@@ -1,0 +1,157 @@
+:root{
+  --black:#03050a;
+  --black-2:#070b14;
+  --royal:#4169e1;
+  --royal-deep:#102b8f;
+  --royal-bright:#5f86ff;
+  --gold:#d4af37;
+  --gold-light:#ffe58a;
+  --white:#ffffff;
+  --red:#e21b2d;
+  --red-bright:#ff3348;
+  --text:#ffffff;
+  --muted:#d6dbea;
+  --line:rgba(255,255,255,.16);
+  --glass:rgba(7,12,25,.78);
+  --glass-2:rgba(20,35,78,.70);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%,rgba(65,105,225,.30),transparent 28%),
+    radial-gradient(circle at 88% 12%,rgba(212,175,55,.18),transparent 24%),
+    radial-gradient(circle at 78% 80%,rgba(226,27,45,.12),transparent 26%),
+    linear-gradient(135deg,var(--black),#050a18 48%,var(--black));
+  min-height:100vh;overflow-x:hidden;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:44px 44px;animation:gridMove 18s linear infinite}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+.shell{max-width:1400px;margin:auto;padding:0 24px}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(3,5,10,.94);
+  border-bottom:1px solid rgba(212,175,55,.28);box-shadow:0 12px 35px rgba(0,0,0,.55);
+  animation:headerDrop .7s ease both;
+}
+.nav{min-height:76px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.brand{color:var(--gold-light);font-weight:950;letter-spacing:2px;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+.brand-logo{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(65,105,225,.20),0 0 30px rgba(212,175,55,.32);animation:logoPulse 3.2s ease-in-out infinite}
+nav{display:flex;flex-wrap:wrap;gap:5px}
+nav a{color:#e8ebf4;padding:10px 12px;border-radius:12px;font-size:13px;border:1px solid transparent;transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+nav a:hover,nav a.active{color:var(--white);background:rgba(65,105,225,.22);border-color:rgba(65,105,225,.55);transform:translateY(-2px);box-shadow:0 8px 22px rgba(65,105,225,.18)}
+.pill{display:inline-block;padding:7px 11px;border-radius:99px;background:rgba(65,105,225,.18);border:1px solid rgba(212,175,55,.45);color:#fff;font-size:11px;animation:pillGlow 3s ease-in-out infinite}
+.hero,.card{
+  background:var(--glass);border:1px solid var(--line);border-radius:24px;
+  box-shadow:0 25px 70px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.09);
+  position:relative;overflow:hidden;
+}
+/* Glassmorphism without backdrop blur: text and imagery remain perfectly sharp. */
+.glass,.card{background:linear-gradient(145deg,rgba(20,35,78,.76),rgba(3,5,10,.86));}
+.hero{padding:52px;margin-top:34px;animation:riseIn .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{font-size:clamp(42px,7vw,86px);line-height:.94;color:var(--gold-light);margin:14px 0;text-shadow:0 0 28px rgba(212,175,55,.24);animation:titleReveal 1s .15s ease both}
+.hero p,.muted{color:var(--muted);line-height:1.75}
+.card{padding:22px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.45);box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 35px rgba(65,105,225,.12),inset 0 1px 0 rgba(255,255,255,.10)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:17px;margin:20px 0}
+.grid>.card{animation:cardIn .65s ease both}
+.grid>.card:nth-child(2){animation-delay:.06s}.grid>.card:nth-child(3){animation-delay:.12s}.grid>.card:nth-child(4){animation-delay:.18s}.grid>.card:nth-child(5){animation-delay:.24s}.grid>.card:nth-child(6){animation-delay:.30s}
+.metric{font-size:38px;font-weight:950;color:var(--gold-light);text-shadow:0 0 18px rgba(212,175,55,.18)}
+.bar{height:10px;background:#0a1020;border:1px solid rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--royal),var(--gold),var(--red));background-size:200% 100%;animation:gradientFlow 3s linear infinite}
+.btn{
+  display:inline-block;padding:12px 18px;border:1px solid rgba(255,255,255,.20);border-radius:13px;
+  background:linear-gradient(135deg,#162d74,#0a1230);color:#fff;font-weight:900;cursor:pointer;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;position:relative;overflow:hidden;
+}
+.btn:before{content:"";position:absolute;top:0;left:-130%;width:80%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-20deg);transition:left .55s ease}
+.btn:hover:before{left:150%}.btn:hover{transform:translateY(-3px) scale(1.015);border-color:var(--gold);box-shadow:0 12px 30px rgba(65,105,225,.28)}
+.btn:active{transform:translateY(0) scale(.99)}
+.gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#080702;border-color:#fff0a8;box-shadow:0 8px 25px rgba(212,175,55,.25)}
+.red{background:linear-gradient(135deg,var(--red-bright),var(--red));color:#fff;border-color:#ff7b89;box-shadow:0 8px 25px rgba(226,27,45,.24)}
+.blue{background:linear-gradient(135deg,var(--royal-bright),var(--royal-deep));color:#fff;border-color:#83a0ff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+input,textarea{
+  width:100%;padding:13px;background:rgba(0,0,0,.70);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:11px;margin:7px 0;outline:none;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease
+}
+input:focus,textarea:focus{border-color:var(--royal-bright);box-shadow:0 0 0 3px rgba(65,105,225,.18),0 0 20px rgba(65,105,225,.14);transform:translateY(-1px)}
+textarea{min-height:130px}
+.notice{padding:15px;border-radius:13px;background:linear-gradient(135deg,rgba(65,105,225,.22),rgba(226,27,45,.12));border-left:4px solid var(--gold);margin:14px 0;animation:noticePulse 3s ease-in-out infinite}
+.roadmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.day{padding:13px;border-radius:13px;background:rgba(5,9,20,.84);border:1px solid rgba(255,255,255,.12);transition:transform .25s ease,border-color .25s ease,background .25s ease}
+.day:hover{transform:translateY(-3px);border-color:rgba(65,105,225,.7);background:rgba(16,43,143,.24)}
+.done{border-color:rgba(212,175,55,.75)}.current{border-color:var(--royal-bright);box-shadow:0 0 24px rgba(65,105,225,.18)}.lock{opacity:.48}
+.q{padding:17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;margin:12px 0;background:rgba(3,5,10,.78);animation:questionIn .5s ease both}
+.option{display:block;padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;margin:7px 0;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.option:hover{transform:translateX(4px);border-color:rgba(65,105,225,.65);background:rgba(65,105,225,.12)}
+.option input{width:auto}
+footer{text-align:center;color:#b7bfd4;padding:40px;font-size:12px;border-top:1px solid rgba(212,175,55,.18);margin-top:40px}
+.brand-hero{position:relative;overflow:hidden;background:linear-gradient(120deg,rgba(3,5,10,.93) 0%,rgba(3,5,10,.72) 38%,rgba(3,5,10,.22) 100%),var(--embedded-hero,url("supreme-avatars-hero.jpg")) center/cover}
+.brand-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,5,10,.86) 0%,rgba(3,5,10,.45) 45%,transparent 100%);pointer-events:none;animation:heroSheen 7s ease-in-out infinite alternate}
+.brand-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 45%,rgba(212,175,55,.16),transparent 34%),linear-gradient(180deg,transparent 55%,rgba(3,5,10,.82) 100%);pointer-events:none}
+.brand-hero>*{position:relative;z-index:1}
+.institution-mark{width:104px;height:104px;object-fit:cover;border-radius:24px;border:2px solid var(--gold);box-shadow:0 18px 50px rgba(0,0,0,.72),0 0 36px rgba(212,175,55,.24);margin-bottom:12px;animation:markFloat 4s ease-in-out infinite}
+.brand-sub{letter-spacing:4px;text-transform:uppercase;color:var(--gold-light);font-size:11px;font-weight:900}
+.brand-hero{border:1px solid rgba(212,175,55,.55);box-shadow:0 30px 90px rgba(0,0,0,.82),inset 0 0 0 1px rgba(255,255,255,.08);min-height:760px}
+.brand-hero .institution-mark{background:rgba(3,5,10,.78);padding:6px}
+/* Decorative royal-blue/gold/red animated accents */
+.brand-hero .actions:after{content:"";display:block;width:70px;height:3px;margin:auto;background:linear-gradient(90deg,var(--royal),var(--gold),var(--red));background-size:200% 100%;animation:gradientFlow 2.5s linear infinite}
+@keyframes riseIn{from{opacity:0;transform:translateY(35px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes cardIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes questionIn{from{opacity:0;transform:translateX(-15px)}to{opacity:1;transform:none}}
+@keyframes headerDrop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+@keyframes titleReveal{from{opacity:0;letter-spacing:12px;transform:translateX(-15px)}to{opacity:1;letter-spacing:normal;transform:none}}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 0 4px rgba(65,105,225,.20),0 0 30px rgba(212,175,55,.24)}50%{box-shadow:0 0 0 7px rgba(65,105,225,.13),0 0 46px rgba(212,175,55,.44)}}
+@keyframes markFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+@keyframes pillGlow{0%,100%{box-shadow:0 0 0 rgba(212,175,55,0)}50%{box-shadow:0 0 24px rgba(212,175,55,.16)}}
+@keyframes noticePulse{0%,100%{box-shadow:0 0 0 rgba(65,105,225,0)}50%{box-shadow:0 0 26px rgba(65,105,225,.12)}}
+@keyframes gradientFlow{to{background-position:200% 0}}
+@keyframes heroSheen{from{opacity:.72}to{opacity:1}}
+@keyframes gridMove{from{background-position:0 0}to{background-position:44px 44px}}
+@media(max-width:850px){nav{display:none}.hero{padding:32px 22px}.shell{padding:0 14px}.brand-hero{min-height:700px}.institution-mark{width:84px;height:84px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* ================= 14-SECOND SUPREME AVATARS PRELOADER ================= */
+body.sa-preloader-active{overflow:hidden}
+body.sa-preloader-active>.shell{visibility:hidden}
+#sa-preloader{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;overflow:hidden;background:#02040a;isolation:isolate}
+#sa-preloader:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 38%,rgba(20,57,173,.38),transparent 30%),radial-gradient(circle at 20% 80%,rgba(226,27,45,.18),transparent 26%),radial-gradient(circle at 80% 20%,rgba(212,175,55,.16),transparent 25%);animation:saAura 8s ease-in-out infinite alternate}
+#sa-preloader:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.035) 48%,transparent 54%);background-size:220% 100%;animation:saSweep 5s linear infinite;pointer-events:none}
+.sa-preloader-glow{position:absolute;width:28vw;height:28vw;border-radius:50%;filter:none;opacity:.28;pointer-events:none}
+.sa-glow-a{background:rgba(65,105,225,.32);left:-10vw;bottom:-8vw;animation:saOrb 9s ease-in-out infinite}
+.sa-glow-b{background:rgba(212,175,55,.24);right:-10vw;top:-8vw;animation:saOrb 11s ease-in-out infinite reverse}
+.sa-loader-card{position:relative;z-index:2;width:min(94vw,620px);min-height:min(92vh,900px);padding:30px 28px 24px;border:1px solid rgba(212,175,55,.55);border-radius:30px;background:linear-gradient(145deg,rgba(7,16,40,.96),rgba(2,4,10,.98));box-shadow:0 35px 100px rgba(0,0,0,.8),0 0 70px rgba(65,105,225,.12),inset 0 1px 0 rgba(255,255,255,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:saCardIn 1s cubic-bezier(.2,.8,.2,1) both}
+.sa-loader-brand{display:flex;flex-direction:column;align-items:center;gap:4px}
+.sa-loader-logo{width:112px;height:112px;object-fit:contain;display:block;border-radius:50%;background:#02040a;border:2px solid var(--gold);box-shadow:0 0 0 7px rgba(65,105,225,.13),0 0 45px rgba(212,175,55,.35);animation:saLogoFloat 3s ease-in-out infinite}
+.sa-loader-kicker{margin-top:12px;color:#fff;font-size:12px;letter-spacing:5px;font-weight:900}
+.sa-loader-title{color:var(--gold-light);font-size:clamp(18px,4vw,26px);letter-spacing:6px;font-weight:950}
+.sa-human-wrap{width:190px;height:320px;margin:10px 0 8px;position:relative;display:grid;place-items:center}
+.sa-human{width:170px;height:310px;overflow:visible;filter:drop-shadow(0 0 18px rgba(212,175,55,.22))}
+.sa-human-outline{fill:rgba(65,105,225,.18);stroke:rgba(255,255,255,.28);stroke-width:3}
+.sa-human-fill{fill:url(#saHumanGold);stroke:#fff2ad;stroke-width:1.5;clip-path:inset(100% 0 0 0);animation:saHumanLoad 14s linear forwards;transform-origin:bottom center}
+.sa-human-wrap:after{content:"";position:absolute;bottom:0;width:150px;height:4px;background:linear-gradient(90deg,transparent,var(--royal),var(--gold),var(--red),transparent);box-shadow:0 0 24px rgba(212,175,55,.5);animation:saLinePulse 1.8s ease-in-out infinite}
+.sa-load-label{width:min(100%,470px);display:flex;justify-content:space-between;gap:10px;color:#dce5ff;font-size:10px;letter-spacing:2px;font-weight:900;margin-top:5px}
+.sa-load-label strong{color:var(--gold-light);font-size:12px;letter-spacing:1px}
+.sa-load-track{width:min(100%,470px);height:9px;border:1px solid rgba(212,175,55,.45);border-radius:99px;background:#050a17;overflow:hidden;margin:9px 0 15px;box-shadow:inset 0 2px 7px rgba(0,0,0,.65)}
+#sa-load-bar{height:100%;width:0;background:linear-gradient(90deg,var(--royal-deep),var(--royal),var(--gold),var(--red));background-size:240% 100%;animation:saBarShimmer 2s linear infinite;box-shadow:0 0 16px rgba(212,175,55,.45)}
+.sa-quote{width:min(100%,500px);min-height:125px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .35s ease,transform .35s ease}
+.sa-quote-out{opacity:0;transform:translateY(10px)}
+.sa-quote-mark{color:var(--gold);font-family:Georgia,serif;font-size:38px;line-height:.6}
+.sa-quote p{font-family:Georgia,"Times New Roman",serif;color:#fff;font-size:clamp(16px,3vw,20px);line-height:1.45;margin:10px 0 8px;max-width:480px;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.sa-quote-rule{width:55px;height:2px;background:linear-gradient(90deg,var(--royal),var(--gold),var(--red));margin:4px 0 9px}
+.sa-quote small{color:#aeb9d4;font-size:8px;letter-spacing:2px;font-weight:800}
+.sa-dots{display:flex;gap:7px;margin-top:13px}.sa-dots i{width:6px;height:6px;border-radius:50%;background:var(--royal);animation:saDot 1.4s ease-in-out infinite}.sa-dots i:nth-child(2){background:var(--gold);animation-delay:.2s}.sa-dots i:nth-child(3){background:var(--red);animation-delay:.4s}
+.sa-preloader-exit{animation:saExit .9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes saCardIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes saHumanLoad{0%{clip-path:inset(100% 0 0 0)}100%{clip-path:inset(0 0 0 0)}}
+@keyframes saAura{from{transform:scale(1) rotate(0deg);opacity:.75}to{transform:scale(1.12) rotate(5deg);opacity:1}}
+@keyframes saSweep{from{background-position:220% 0}to{background-position:-20% 0}}
+@keyframes saOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(4vw,-3vh) scale(1.16)}}
+@keyframes saLogoFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+@keyframes saLinePulse{0%,100%{opacity:.55;transform:scaleX(.8)}50%{opacity:1;transform:scaleX(1.1)}}
+@keyframes saBarShimmer{to{background-position:240% 0}}
+@keyframes saDot{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(-4px);opacity:1}}
+@keyframes saExit{to{opacity:0;transform:scale(1.03);visibility:hidden}}
+@media(max-height:760px){.sa-loader-card{min-height:94vh;padding:18px}.sa-loader-logo{width:78px;height:78px}.sa-human-wrap{height:205px;margin:3px 0}.sa-human{height:205px}.sa-quote{min-height:95px}.sa-quote p{font-size:15px;margin:7px 0}.sa-loader-kicker{margin-top:6px}.sa-load-track{margin-bottom:7px}}
+@media(max-width:520px){.sa-loader-card{width:94vw;padding:20px 16px;border-radius:24px}.sa-loader-logo{width:86px;height:86px}.sa-human-wrap{height:235px;width:160px}.sa-human{height:230px;width:140px}.sa-loader-title{font-size:17px;letter-spacing:4px}.sa-loader-kicker{letter-spacing:3px}.sa-load-label{font-size:8px;letter-spacing:1px}.sa-quote p{font-size:15px}}
